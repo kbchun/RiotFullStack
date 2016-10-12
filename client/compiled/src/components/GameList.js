@@ -1,0 +1,22 @@
+"use strict";
+
+var GameList = function GameList(props) {
+  return React.createElement(
+    "div",
+    { className: "game-list media" },
+    props.games.map(function (game, index) {
+      return React.createElement(GameListEntry, { onClickFunc: props.onClickFunc, game: game, index: index + 1 });
+    })
+  );
+};
+
+// PropTypes tell other developers what `props` a component expects
+// Warnings will be shown in the console when the defined rules are violated
+// GameList.propTypes = {
+//   games: React.PropTypes.array.isRequired
+// };
+
+// In the ES6 spec, files are "modules" and do not share a top-level scope.
+// `var` declarations will only exist globally where explicitly defined.
+window.GameList = GameList;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb21wb25lbnRzL0dhbWVMaXN0LmpzeCJdLCJuYW1lcyI6WyJHYW1lTGlzdCIsInByb3BzIiwiZ2FtZXMiLCJtYXAiLCJnYW1lIiwiaW5kZXgiLCJvbkNsaWNrRnVuYyIsIndpbmRvdyJdLCJtYXBwaW5ncyI6Ijs7QUFBQSxJQUFJQSxXQUFXLFNBQVhBLFFBQVcsQ0FBQ0MsS0FBRCxFQUFXO0FBQ3hCLFNBQ0U7QUFBQTtBQUFBLE1BQUssV0FBVSxpQkFBZjtBQUVFQSxVQUFNQyxLQUFOLENBQVlDLEdBQVosQ0FBZ0IsVUFBQ0MsSUFBRCxFQUFPQyxLQUFQO0FBQUEsYUFBaUIsb0JBQUMsYUFBRCxJQUFlLGFBQWFKLE1BQU1LLFdBQWxDLEVBQStDLE1BQU1GLElBQXJELEVBQTJELE9BQU9DLFFBQVEsQ0FBMUUsR0FBakI7QUFBQSxLQUFoQjtBQUZGLEdBREY7QUFPRCxDQVJEOztBQVVBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7O0FBRUE7QUFDQTtBQUNBRSxPQUFPUCxRQUFQLEdBQWtCQSxRQUFsQiIsImZpbGUiOiJHYW1lTGlzdC5qcyIsInNvdXJjZXNDb250ZW50IjpbInZhciBHYW1lTGlzdCA9IChwcm9wcykgPT4ge1xuICByZXR1cm4gKFxuICAgIDxkaXYgY2xhc3NOYW1lPVwiZ2FtZS1saXN0IG1lZGlhXCI+XG4gICAge1xuICAgICAgcHJvcHMuZ2FtZXMubWFwKChnYW1lLCBpbmRleCkgPT4gPEdhbWVMaXN0RW50cnkgb25DbGlja0Z1bmM9e3Byb3BzLm9uQ2xpY2tGdW5jfSBnYW1lPXtnYW1lfSBpbmRleD17aW5kZXggKyAxfS8+KVxuICAgIH1cbiAgICA8L2Rpdj5cbiAgKTtcbn07XG5cbi8vIFByb3BUeXBlcyB0ZWxsIG90aGVyIGRldmVsb3BlcnMgd2hhdCBgcHJvcHNgIGEgY29tcG9uZW50IGV4cGVjdHNcbi8vIFdhcm5pbmdzIHdpbGwgYmUgc2hvd24gaW4gdGhlIGNvbnNvbGUgd2hlbiB0aGUgZGVmaW5lZCBydWxlcyBhcmUgdmlvbGF0ZWRcbi8vIEdhbWVMaXN0LnByb3BUeXBlcyA9IHtcbi8vICAgZ2FtZXM6IFJlYWN0LlByb3BUeXBlcy5hcnJheS5pc1JlcXVpcmVkXG4vLyB9O1xuXG4vLyBJbiB0aGUgRVM2IHNwZWMsIGZpbGVzIGFyZSBcIm1vZHVsZXNcIiBhbmQgZG8gbm90IHNoYXJlIGEgdG9wLWxldmVsIHNjb3BlLlxuLy8gYHZhcmAgZGVjbGFyYXRpb25zIHdpbGwgb25seSBleGlzdCBnbG9iYWxseSB3aGVyZSBleHBsaWNpdGx5IGRlZmluZWQuXG53aW5kb3cuR2FtZUxpc3QgPSBHYW1lTGlzdDtcbiJdfQ==
