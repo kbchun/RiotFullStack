@@ -29,22 +29,27 @@ app.use(express.static( __dirname + '/../client'));
 app.get('/name', function(reqClient, resClient) {
   console.log('receive GET request');
   var summoner = reqClient.url.slice(reqClient.url.indexOf('?') + 1);
+  var profile;
   var riotId;
   var recentGameData;
 
   // send get request to riot
-  request.get(riotEndpts.summonerID + summoner + riotEndpts.apiKey, function(err, reqRiot, resRiot) {
-    if (JSON.parse(resRiot).hasOwnProperty(summoner)) {
-      riotId = JSON.parse(resRiot)[summoner]['id'];
-      if (JSON.parse(resRiot)[summoner]) {
-        request.get(riotEndpts.gameLog + riotId + '/recent' + riotEndpts.apiKey, function(err, reqRiot, resRiot) {
-          recentGameData = util.dataCleaner(JSON.parse(resRiot).games);
+  request.get(riotEndpts.summonerID + summoner + riotEndpts.apiKey, function(err, reqRiot, profileResRiot) {
+    if (JSON.parse(profileResRiot).hasOwnProperty(summoner)) {
+      profile = JSON.parse(profileResRiot)[summoner];
+      riotId = profile['id'];
+      if (profile) {
+        request.get(riotEndpts.gameLog + riotId + '/recent' + riotEndpts.apiKey, function(err, reqRiot, gamesResRiot) {
+          recentGameData = util.dataCleaner(JSON.parse(gamesResRiot).games);
+          var username = profile['name'];
+          var data = {};
+          data[username] = recentGameData;
           resClient.writeHead(201);
-          resClient.end(JSON.stringify(recentGameData));
+          resClient.end(JSON.stringify(data));
         });
       }
     } else {
-      resClient.send(404).end();
+      resClient.sendStatus(404).end();
     }
   });
 });

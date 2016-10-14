@@ -1,4 +1,4 @@
-var champData = require('./champData');
+var champData = require('./static_data/champData');
 
 var dataCleaner = function(results) {
   var data = [];

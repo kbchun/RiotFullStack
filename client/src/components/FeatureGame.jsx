@@ -3,8 +3,8 @@ var FeatureGame = (props) => (
     <div className="media-left media-middle">
     </div>
     <div className="media-body">
-      <div className="game-list-entry-title"> </div>
-      <div className="game-list-entry-detail">Statistics</div>
+      <div className="game-list-entry-title">SUMMONER: {props.summoner}</div>
+      <div className="game-list-entry-detail"></div>
       {
         props.statistics.map( (stat) => <div>{stat}</div>)
       }

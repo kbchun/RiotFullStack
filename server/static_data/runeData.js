@@ -8348,4 +8348,4 @@ module.exports = {
       "type":"red"
     }
   }
-}
+};

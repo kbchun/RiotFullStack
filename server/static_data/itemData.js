@@ -1,7 +1,7 @@
 module.exports={  
   "type":"item",
   "version":"6.20.1",
-  "basic":{  ß
+  "basic":{
     "id":0,
     "name":"",
     "group":"",
@@ -1541,4 +1541,4 @@ module.exports={
       "plaintext":"Critical Strike provides Cooldown Reduction and Mana"
     }
   }
-}
+};

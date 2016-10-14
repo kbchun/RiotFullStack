@@ -6,7 +6,8 @@ class App extends React.Component {
 
     this.state = {
       currentGame: {},
-      gameList: []
+      gameList: [],
+      summoner: ''
     };
   }
 
@@ -24,20 +25,24 @@ class App extends React.Component {
 
   onSearchButtonClick(event) {
     var options = {
-      summoner: event.target.closest('div').getElementsByTagName('input')[0].value,
-      key: window.RIOT_API_KEY
+      summoner: event.target.closest('div').getElementsByTagName('input')[0].value
     };
-    this.props.searchServer(options, (data) => { this.setState({ currentGame: data[0], gameList: data }); });
+    this.props.searchServer(options, (data) => { 
+      this.setState({summoner: Object.keys(data)[0]});
+      this.setState({ currentGame: data[this.state.summoner][0], gameList: data[this.state.summoner] }); 
+    });
     event.target.closest('div').getElementsByTagName('input')[0].value = '';
   }
 
   onSearchButtonEnter(event) {
     if (event.keyCode === 13) {
       var options = {
-        summoner: event.target.closest('div').getElementsByTagName('input')[0].value,
-        key: window.RIOT_API_KEY
+        summoner: event.target.closest('div').getElementsByTagName('input')[0].value
       };
-      this.props.searchServer(options, (data) => { this.setState({ currentGame: data[0], gameList: data }); }); 
+      this.props.searchServer(options, (data) => { 
+        this.setState({summoner: Object.keys(data)[0]});
+        this.setState({ currentGame: data[this.state.summoner][0], gameList: data[this.state.summoner] }); 
+      });
       event.target.closest('div').getElementsByTagName('input')[0].value = '';
     }
   }
@@ -60,7 +65,7 @@ class App extends React.Component {
         <Navbar onClickFunc={this.onSearchButtonClick.bind(this)} onEnterFunc={this.onSearchButtonEnter.bind(this)}/>
           <div className="row container-fluid">
             <div className="col-md-6">
-              <FeatureGame game={this.state.currentGame} statistics={this.displayStatsFunc(this.state.currentGame)}/>
+              <FeatureGame summoner={this.state.summoner} game={this.state.currentGame} statistics={this.displayStatsFunc(this.state.currentGame)}/>
             </div>
             <div className="col-md-6">
               <GameList onClickFunc={this.onGameListClick.bind(this)} games={this.state.gameList}/>
